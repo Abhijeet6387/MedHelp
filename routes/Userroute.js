@@ -37,11 +37,10 @@ router.post("/register", (req, res) => {
 
 //login
 router.post("/login", (req, res) => {
-  // console.log(req.body);
-  Users.find({ Email: req.body.email }, (err, user) => {
+  Users.find({ Email: req.body.Email }, (err, user) => {
     if (err) {
       console.log(err);
-      return res.status(500).json({
+      res.status(500).json({
         error: err,
       });
     } else {
@@ -49,42 +48,36 @@ router.post("/login", (req, res) => {
         return res.status(401).json({
           message: "Authentication failed",
         });
-      } else {
-        bcrypt.hash(req.body.password, 10, (hash_err, hash) => {
-          if (hash_err) {
-            // console.log(hash_err);
-            return res.status(500).json({ error: hash_err });
-          } else {
-            bcrypt.compare(req.body.password, hash, (auth_err, result) => {
-              // console.log(auth_err);
-              if (auth_err) {
-                console.log("Incorrect Password");
-                return res.status(401).json({
-                  message: "Authentication failed",
-                });
-              } else if (result) {
-                const token = jwt.sign(
-                  {
-                    Email: req.body.email,
-                  },
-                  "abhijeetsecretkey",
-                  {
-                    expiresIn: "1h",
-                  }
-                );
-                return res
-                  .status(200)
-                  .json({ message: "success", token: token });
-              } else {
-                return res.status(401).json({
-                  message: "Failed to fetch token",
-                  token: null,
-                });
+      }
+      bcrypt.compare(
+        req.body.Password,
+        user[0].Password,
+        (auth_err, result) => {
+          if (auth_err) {
+            return res.status(401).json({
+              message: "Authentication failed",
+            });
+          } else if (result) {
+            const token = jwt.sign(
+              {
+                id: user[0]._id,
+                Email: user[0].Email,
+                Name: user[0].Name,
+              },
+              "abhijeetsecretkey",
+              {
+                expiresIn: "1h",
               }
+            );
+            return res.status(200).json({ message: "success", token: token });
+          } else {
+            return res.status(401).json({
+              message: "Failed to fetch token",
+              token: null,
             });
           }
-        });
-      }
+        }
+      );
     }
   });
 });

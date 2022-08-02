@@ -5,32 +5,30 @@ import { validateEmail } from "../helpers/validation";
 import axios from "axios";
 
 export default function Login() {
-  const [user, setUser] = useState({ email: "", password: "" });
-  const onChangeUser = (e) => {
-    //  spread operator ...
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
   const onSubmitForm = (e) => {
     e.preventDefault();
-    // console.log(user.email);
-    if (!validateEmail(user.email)) alert("Enter the valid email");
-    else if (user.password === "") alert("Password cannot be empty");
+    if (!validateEmail(email)) alert("Enter a valid email address");
+    else if (pass === "") alert("Password cannot be empty");
     else {
       axios
-        .post("/users/login", user)
+        .post("/users/login", {
+          Email: email,
+          Password: pass,
+        })
         .then((res) => {
           alert(res.data.message);
-          // console.log(res.data);
           localStorage.setItem("my_token", res.data.token);
+          window.location.href = "/home";
         })
         .catch((err) => {
           alert(err.message);
           console.log(err);
-        })
-        .finally(() => {
-          setUser({ email: "", password: "" });
-          window.location.href = "/home";
         });
+      setEmail("");
+      setPass("");
     }
   };
   return (
@@ -50,8 +48,10 @@ export default function Login() {
               id="email"
               placeholder="Email"
               autocomplete="off"
-              onChange={onChangeUser}
-              value={user.email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email}
             />
           </div>
           <div className="form-field d-flex align-items-center">
@@ -62,8 +62,8 @@ export default function Login() {
               id="pwd"
               placeholder="Password"
               autocomplete="off"
-              onChange={onChangeUser}
-              value={user.password}
+              onChange={(e) => setPass(e.target.value)}
+              value={pass}
               required
             />
           </div>
