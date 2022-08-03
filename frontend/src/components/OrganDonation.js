@@ -1,7 +1,65 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import "../styles/Donation.css";
 
 function DonationForm() {
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [contact, setContact] = useState("");
+  const [gender, setGender] = useState("Male");
+  const [age, setAge] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [weight, setWeight] = useState("");
+  const [bloodg, setBloodG] = useState("");
+  const [ques1, setQues1] = useState("");
+  const [ques2, setQues2] = useState("");
+  const [ques3, setQues3] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("/organdonations/donateorgan", {
+        Fname: firstname,
+        Lname: lastname,
+        gender: gender,
+        contact: contact,
+        age: age,
+        address: address,
+        city: city,
+        state: state,
+        pincode: zip,
+        weight: weight,
+        blood_group: bloodg,
+        organ: ques1,
+        any_disease: ques2,
+        surgery_or_transfusion: ques3,
+      })
+      .then((res) => {
+        alert(res.data.message);
+        //res.data.result is yet to be coded
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setFirstName("");
+    setLastName("");
+    setContact("");
+    setAge("");
+    setGender("");
+    setBloodG("");
+    setWeight("");
+    setAddress("");
+    setState("");
+    setCity("");
+    setZip("");
+    setQues1("");
+    setQues2("");
+    setQues3("");
+  };
+
   return (
     <div className="container">
       <div className="card">
@@ -13,6 +71,7 @@ function DonationForm() {
             className="row g-3 p-3 mt-3"
             autoComplete="off"
             style={{ overflow: "auto", height: "70vh" }}
+            onSubmit={handleSubmit}
           >
             <div className="col-md-6 mt-3">
               <label for="inputfirstname" className="form-label">
@@ -23,6 +82,8 @@ function DonationForm() {
                 className="form-control"
                 id="inputfirstname"
                 placeholder="First Name"
+                onChange={(e) => setFirstName(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-6 mt-3">
@@ -34,6 +95,7 @@ function DonationForm() {
                 className="form-control"
                 id="inputlastname"
                 placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
             <div className="col-md-6 mt-3">
@@ -44,15 +106,20 @@ function DonationForm() {
                 type="text"
                 className="form-control"
                 id="inputcontact"
-                pattern="+yy-xxxx-xxx-xxx"
-                placeholder="+91-6387-168-893"
+                placeholder="+91-6387168893"
+                onChange={(e) => setContact(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-3 mt-3">
               <label className="visually-hidden" for="autoSizingSelect">
                 Gender
               </label>
-              <select className="form-control">
+              <select
+                className="form-control"
+                onChange={(e) => setGender(e.target.value)}
+                required
+              >
                 <option>Male</option>
                 <option>Female</option>
                 <option>Rather Not Say</option>
@@ -63,10 +130,12 @@ function DonationForm() {
                 Age
               </label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="inputage"
                 placeholder="Enter Age"
+                onChange={(e) => setAge(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-6 mt-3">
@@ -78,6 +147,8 @@ function DonationForm() {
                 className="form-control"
                 id="inputAddress"
                 placeholder="1234 Main St."
+                onChange={(e) => setAddress(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-2 mt-3">
@@ -89,6 +160,8 @@ function DonationForm() {
                 className="form-control"
                 id="inputcity"
                 placeholder="Mumbai"
+                onChange={(e) => setCity(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-2 mt-3">
@@ -100,6 +173,8 @@ function DonationForm() {
                 className="form-control"
                 id="inputstate"
                 placeholder="Maharashtra"
+                onChange={(e) => setState(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-2 mt-3">
@@ -111,6 +186,8 @@ function DonationForm() {
                 className="form-control"
                 id="inputzip"
                 placeholder="226021"
+                onChange={(e) => setZip(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-3 mt-3">
@@ -122,13 +199,19 @@ function DonationForm() {
                 className="form-control"
                 id="inputweight"
                 placeholder="In Kg"
+                onChange={(e) => setWeight(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-3 mt-3">
               <label className="visually-hidden" for="autoSizingSelect">
                 Blood Group
               </label>
-              <select className="form-control">
+              <select
+                className="form-control"
+                onChange={(e) => setBloodG(e.target.value)}
+                required
+              >
                 <option>A+</option>
                 <option>A-</option>
                 <option>B+</option>
@@ -148,13 +231,19 @@ function DonationForm() {
                 className="form-control"
                 id="inputdonate"
                 placeholder="Kidney"
+                onChange={(e) => setQues1(e.target.value)}
+                required
               />
             </div>
             <div className="col-md-6 mt-3">
               <label for="inputdisease" className="form-label">
                 Do you suffer from any of the following Disease ?
               </label>
-              <select className="form-control">
+              <select
+                className="form-control"
+                onChange={(e) => setQues2(e.target.value)}
+                required
+              >
                 <option>Heart</option>
                 <option>Lungs</option>
                 <option>Tuberculosis</option>
@@ -167,7 +256,11 @@ function DonationForm() {
               <label for="inputblood" className="form-label">
                 Had any Surgery Or Blood TransFusion before?
               </label>
-              <select className="form-control">
+              <select
+                className="form-control"
+                onChange={(e) => setQues3(e.target.value)}
+                required
+              >
                 <option>Major</option>
                 <option>Minor</option>
                 <option>Blood Transfusion</option>
@@ -180,6 +273,15 @@ function DonationForm() {
             </div>
           </form>
         </div>
+        {/* <p>
+          {gender}
+          <br />
+          {bloodg}
+          <br />
+          {ques2}
+          <br />
+          {ques3}
+        </p> */}
       </div>
     </div>
   );

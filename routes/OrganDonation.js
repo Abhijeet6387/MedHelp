@@ -39,10 +39,10 @@ router.post("/donateorgan", async (req, res) => {
     }
     // implement function to find hospital near city
 
-    res.status(201).send({ hosp, time, fd });
-  } catch (e) {
-    console.log({ e });
-    res.send(e);
+    res.status(201).json({ message: "Successful", result: { hosp, time, fd } });
+  } catch (err) {
+    console.log({ err });
+    res.status(401).json({ message: "Something went wrong!", error: err });
   }
 });
 

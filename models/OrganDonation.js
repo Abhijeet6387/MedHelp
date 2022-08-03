@@ -16,7 +16,7 @@ const form = new mongoose.Schema({
     enum: "male" || "female",
   },
   contact: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 10,
     maxlength: 10,

@@ -41,9 +41,6 @@ export default function AppointmentForm(props) {
       Pname: enterName,
       DrName: enterDrName,
     };
-    // console.log("jsadkjlsjd");
-    // console.log(appointData);
-    // bookAppointment(appointData);
     props.addData(appointData);
     SetenterTitle("");
     SetenterDate("");

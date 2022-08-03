@@ -1,7 +1,6 @@
 import Description from "../styles/Description/index";
 import Post from "../styles/Post/index";
-import React, { useEffect, useState } from "react";
-// import ReactDOM from 'react-dom';
+import React, { useState } from "react";
 import "../styles/Description";
 
 export default function DiscussForum() {

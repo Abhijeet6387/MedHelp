@@ -16,7 +16,7 @@ const form = new mongoose.Schema({
     enum: "male" || "female",
   },
   contact: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 10,
     maxlength: 10,
@@ -27,7 +27,7 @@ const form = new mongoose.Schema({
     minlength: 2,
     validate(value) {
       if (value <= 14) {
-        throw new Error(" Not qualified for Donation");
+        throw new Error("Not qualified for Donation");
       }
     },
   },
