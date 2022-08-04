@@ -5,7 +5,7 @@ const Hospital = require("../models/Hospital");
 const router = express.Router();
 
 // submit
-router.post("/donateblood", async (req, res) => {
+router.post("/donateblood", auth, async (req, res) => {
   const form = new DonationFrom(req.body);
 
   try {

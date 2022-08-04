@@ -13,7 +13,7 @@ const form = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: "male" || "female",
+    enum: ["Male", "Female", "Rather Not Say"],
   },
   contact: {
     type: String,
@@ -51,6 +51,7 @@ const form = new mongoose.Schema({
   },
   blood_group: {
     type: String,
+    required: true,
   },
   weight: {
     type: Number,
@@ -62,10 +63,12 @@ const form = new mongoose.Schema({
   },
   any_disease: {
     type: String,
+    required: true,
   },
   surgery_or_transfusion: {
     type: String,
-    enum: "major" || "minor" || "blood transfusion",
+    enum: ["Major", "Minor", "Blood Transfusion"],
+    required: true,
   },
 });
 

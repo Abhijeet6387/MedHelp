@@ -13,33 +13,39 @@ function DonationForm() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [weight, setWeight] = useState("");
-  const [bloodg, setBloodG] = useState("");
+  const [bloodg, setBloodG] = useState("A+");
   const [ques1, setQues1] = useState("");
-  const [ques2, setQues2] = useState("");
-  const [ques3, setQues3] = useState("");
-
+  const [ques2, setQues2] = useState("Heart");
+  const [ques3, setQues3] = useState("Major");
+  const token = localStorage.getItem("my_token");
+  const data = {
+    Fname: firstname,
+    Lname: lastname,
+    gender: gender,
+    contact: contact,
+    age: age,
+    address: address,
+    city: city,
+    state: state,
+    pincode: zip,
+    weight: weight,
+    blood_group: bloodg,
+    organ: ques1,
+    any_disease: ques2,
+    surgery_or_transfusion: ques3,
+  };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    console.log(token);
     axios
-      .post("/organdonations/donateorgan", {
-        Fname: firstname,
-        Lname: lastname,
-        gender: gender,
-        contact: contact,
-        age: age,
-        address: address,
-        city: city,
-        state: state,
-        pincode: zip,
-        weight: weight,
-        blood_group: bloodg,
-        organ: ques1,
-        any_disease: ques2,
-        surgery_or_transfusion: ques3,
+      .post("/organdonations/donateorgan", data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       })
       .then((res) => {
         alert(res.data.message);
         //res.data.result is yet to be coded
+        console.log(res.data.result);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +77,6 @@ function DonationForm() {
             className="row g-3 p-3 mt-3"
             autoComplete="off"
             style={{ overflow: "auto", height: "70vh" }}
-            onSubmit={handleSubmit}
           >
             <div className="col-md-6 mt-3">
               <label for="inputfirstname" className="form-label">
@@ -267,7 +272,11 @@ function DonationForm() {
               </select>
             </div>
             <div className="col-12 mt-3" style={{ textAlign: "center" }}>
-              <button type="button" className="btn  btnhover">
+              <button
+                type="button"
+                className="btn btnhover"
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             </div>

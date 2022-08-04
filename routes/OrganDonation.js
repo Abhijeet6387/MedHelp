@@ -6,7 +6,7 @@ const Hospital = require("../models/Hospital");
 const router = express.Router();
 
 // submit
-router.post("/donateorgan", async (req, res) => {
+router.post("/donateorgan", auth, async (req, res) => {
   const form = new DonationFrom(req.body);
 
   try {
@@ -35,7 +35,7 @@ router.post("/donateorgan", async (req, res) => {
 
     const hosp = await Hospital.find({ city });
     if (!hosp) {
-      throw new Error("no hospital in this city exits");
+      throw new Error("No results! Try Again..");
     }
     // implement function to find hospital near city
 

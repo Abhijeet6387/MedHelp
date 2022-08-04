@@ -6,43 +6,48 @@ function DonationForm() {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [contact, setContact] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [weight, setWeight] = useState("");
-  const [bloodg, setBloodG] = useState("");
-  const [ques1, setQues1] = useState("");
+  const [bloodg, setBloodG] = useState("A+");
+  const [ques1, setQues1] = useState("Yes");
   const [date, setDate] = useState("");
-  const [ques2, setQues2] = useState("");
-  const [ques3, setQues3] = useState("");
+  const [ques2, setQues2] = useState("Heart");
+  const [ques3, setQues3] = useState("Major");
+  const token = localStorage.getItem("my_token");
+  const data = {
+    Fname: firstname,
+    Lname: lastname,
+    gender: gender,
+    contact: contact,
+    age: age,
+    address: address,
+    city: city,
+    state: state,
+    pincode: zip,
+    weight: weight,
+    blood_group: bloodg,
+    donated_before: ques1,
+    last_donation_date: date,
+    any_disease: ques2,
+    surgery_or_transfusion: ques3,
+  };
 
   const handleSubmit = () => {
-    // e.preventDefault();
-    console.log("mn");
+    console.log(token);
     axios
-      .post("/blooddonations/donateblood", {
-        Fname: firstname,
-        Lname: lastname,
-        gender: gender,
-        contact: contact,
-        age: age,
-        address: address,
-        city: city,
-        state: state,
-        pincode: zip,
-        weight: weight,
-        blood_group: bloodg,
-        donated_before: ques1,
-        last_donation_date: date,
-        any_disease: ques2,
-        surgery_or_transfusion: ques3,
+      .post("/blooddonations/donateblood", data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       })
       .then((res) => {
         alert(res.data.message);
-        console.log(res.data);
+        console.log(res.data.result);
         // res.data.result is yet to be coded
       })
       .catch((err) => {
