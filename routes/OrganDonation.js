@@ -31,7 +31,9 @@ router.post("/donateorgan", auth, async (req, res) => {
       "dec",
     ];
     const fd = month[day - 1] + " " + date;
-    const time = "1 PM - 4 PM";
+    const t1 = Math.floor(Math.random()*5) + 1;
+    const t2 = t1 + 1;
+    const time = t1 + " - " + t2;
 
     const hosp = await Hospital.find({ city });
     if (!hosp) {
