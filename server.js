@@ -8,7 +8,7 @@ app.use(cors());
 //const { createProxyMiddleware } = require("http-proxy-middleware");
 
 require("dotenv").config();
-
+console.log("HELL0");
 app.use(express.json());
 app.use(
   bodyParser.urlencoded({
