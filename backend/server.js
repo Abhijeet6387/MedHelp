@@ -22,7 +22,7 @@ app.use("/users", UserRoute);
 app.use(
   "/api",
   createProxyMiddleware({
-    target: "http://localhost:3000",
+    target: "http://localhost:4000",
     changeOrigin: true,
   })
 );
