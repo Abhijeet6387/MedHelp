@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Auth/auth.css";
+// MUI components
 import {
   Box,
   Grid,
@@ -14,9 +15,16 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
+// Assests & Utils import
+import authImage from "../../assets/AuthImage.jpg";
+import { validateEmail } from "../../utils/validateEmail";
+// Icon import
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import authImage from "../../assets/AuthImage.jpg";
+// External packages
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -25,6 +33,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Data", { email, password });
+    if (email === "" || password === "")
+      toast.error("Please enter all the details");
+    else {
+      // api request here
+    }
   };
 
   return (
@@ -141,6 +154,7 @@ function Login() {
           </Container>
         </Grid>
       </Grid>
+      <ToastContainer />
     </>
   );
 }

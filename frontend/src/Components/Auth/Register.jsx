@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Auth/auth.css";
+// MUI components
 import {
   Box,
   Container,
@@ -15,9 +16,16 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
+// Assets & Utils import
+import authImage from "../../assets/AuthImage.jpg";
+import { validateEmail } from "../../utils/validateEmail";
+// Icons import
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import authImage from "../../assets/AuthImage.jpg";
+// External packages
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function Login() {
   const [name, setName] = useState("");
@@ -25,20 +33,38 @@ function Login() {
   const [password, setPassword] = useState("");
   const [rePass, setRePass] = useState("");
   const [contact, setContact] = useState("");
+  /*
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
+  */
   const [role, setRole] = useState("");
   const [showPass, setShowPass] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Data", { name, email, password, rePass, contact, role });
+    if (
+      name === "" ||
+      email === "" ||
+      password === "" ||
+      rePass === "" ||
+      contact === "" ||
+      role === ""
+    )
+      toast.error("Please enter all the details");
+    else {
+      // api request here
+    }
   };
 
   return (
     <>
       <Grid container spacing={0}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
+          {" "}
+          <img src={authImage} alt="Auth Image" className="auth-image"></img>
+        </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} className="background-color">
           {" "}
           <Container>
@@ -82,6 +108,7 @@ function Login() {
                   />
                   {/* Email */}
                   <TextField
+                    error={!validateEmail(email) && email !== "" ? true : false}
                     fullWidth
                     id="email"
                     label="Email"
@@ -90,6 +117,11 @@ function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     sx={{ marginTop: 1, marginBottom: 1 }}
+                    helperText={
+                      !validateEmail(email) && email !== ""
+                        ? "Please enter a valid email"
+                        : ""
+                    }
                   />
                   {/* Password */}
                   <Grid container spacing={1}>
@@ -125,6 +157,13 @@ function Login() {
                     <Grid item xs={12} sm={12} md={6} lg={6}>
                       <TextField
                         fullWidth
+                        error={
+                          password !== rePass &&
+                          rePass !== "" &&
+                          password !== ""
+                            ? true
+                            : false
+                        }
                         id="repassword"
                         label="Confirm Password"
                         type={showPass ? "text" : "password"}
@@ -132,6 +171,13 @@ function Login() {
                         value={rePass}
                         onChange={(e) => setRePass(e.target.value)}
                         sx={{ marginTop: 1, marginBottom: 1 }}
+                        helperText={
+                          password !== rePass &&
+                          rePass !== "" &&
+                          password !== ""
+                            ? "Passwords did'nt match"
+                            : ""
+                        }
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
@@ -153,47 +199,50 @@ function Login() {
                   </Grid>
                   {/* City, State & Zip */}
                   {/* <Grid container spacing={1}>
-                <Grid item xs={12} sm={12} md={4} lg={4}>
-                  {" "}
-                  <TextField
-                    fullWidth
-                    id="city"
-                    label="City"
-                    type="text"
-                    variant="outlined"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    sx={{ marginTop: 1, marginBottom: 1 }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12} md={4} lg={4}>
-                  {" "}
-                  <TextField
-                    fullWidth
-                    id="state"
-                    label="State"
-                    type="text"
-                    variant="outlined"
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    sx={{ marginTop: 1, marginBottom: 1 }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12} md={4} lg={4}>
-                  <TextField
-                    fullWidth
-                    id="zipCode"
-                    label="Zip Code"
-                    type="text"
-                    variant="outlined"
-                    value={zipCode}
-                    onChange={(e) => setZipCode(e.target.value)}
-                    sx={{ marginTop: 1, marginBottom: 1 }}
-                  />
-                </Grid>
-              </Grid> */}
+                        <Grid item xs={12} sm={12} md={4} lg={4}>
+                        {" "}
+                        <TextField
+                            fullWidth
+                            id="city"
+                            label="City"
+                            type="text"
+                            variant="outlined"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            sx={{ marginTop: 1, marginBottom: 1 }}
+                        />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} lg={4}>
+                        {" "}
+                        <TextField
+                            fullWidth
+                            id="state"
+                            label="State"
+                            type="text"
+                            variant="outlined"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            sx={{ marginTop: 1, marginBottom: 1 }}
+                        />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <TextField
+                            fullWidth
+                            id="zipCode"
+                            label="Zip Code"
+                            type="text"
+                            variant="outlined"
+                            value={zipCode}
+                            onChange={(e) => setZipCode(e.target.value)}
+                            sx={{ marginTop: 1, marginBottom: 1 }}
+                        />
+                        </Grid>
+                    </Grid> */}
                   {/* Contact */}
                   <TextField
+                    error={
+                      contact.length !== 10 && contact !== "" ? true : false
+                    }
                     fullWidth
                     id="contact"
                     label="Contact"
@@ -202,6 +251,11 @@ function Login() {
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     sx={{ marginTop: 1, marginBottom: 1 }}
+                    helperText={
+                      contact.length !== 10 && contact !== ""
+                        ? "Please enter a valid contact"
+                        : "Note: Do not include the country codes at the start"
+                    }
                   />
                   {/* Role */}
                   <FormControl fullWidth sx={{ marginTop: 1, marginBottom: 1 }}>
@@ -247,11 +301,8 @@ function Login() {
             </Box>
           </Container>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6}>
-          {" "}
-          <img src={authImage} alt="Auth Image" className="auth-image"></img>
-        </Grid>
       </Grid>
+      <ToastContainer />
     </>
   );
 }
