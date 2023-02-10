@@ -4,27 +4,17 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const UserRoute = require("./routes/UserRoute");
-const { createProxyMiddleware } = require("http-proxy-middleware");
-//const path = require("path");
+// const path = require("path");
 
 require("dotenv").config();
 app.use(cors());
-
 app.use(
   bodyParser.urlencoded({
     extended: false,
   })
 );
 app.use(bodyParser.json());
-
-// proxy-setup
-app.use(
-  "/api",
-  createProxyMiddleware({
-    target: "http://localhost:4000",
-    changeOrigin: true,
-  })
-);
+app.use(express.json());
 
 app.use("/users", UserRoute);
 

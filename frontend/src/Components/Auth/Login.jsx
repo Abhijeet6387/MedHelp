@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Auth/auth.css";
 // MUI components
 import {
@@ -17,7 +18,6 @@ import {
 } from "@mui/material";
 // Assests & Utils import
 import authImage from "../../assets/AuthImage.jpg";
-import { validateEmail } from "../../utils/validateEmail";
 // Icon import
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -27,17 +27,35 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Data", { email, password });
     if (email === "" || password === "")
       toast.error("Please enter all the details");
     else {
       // api request here
+      axios
+        .post("/users/login", {
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res.data.message);
+          toast.success("Logged in successfully");
+          localStorage.setItem("token", res.data.token);
+          navigate("/home");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Log in failed");
+        });
     }
+    setEmail("");
+    setPassword("");
   };
 
   return (

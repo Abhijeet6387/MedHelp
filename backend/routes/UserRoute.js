@@ -84,7 +84,7 @@ router.get("/getUserInfo", checkAuth, (req, res) => {
       const filterUser = {
         userId: user._id,
         name: user.name,
-        email: user.emal,
+        email: user.email,
         contact: user.contact,
       };
       return res.status(200).json({

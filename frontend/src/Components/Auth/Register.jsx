@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Auth/auth.css";
 // MUI components
 import {
@@ -28,6 +29,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +58,30 @@ function Login() {
       toast.error("Please enter all the details");
     else {
       // api request here
+      axios
+        .post("/users/register", {
+          name: name,
+          email: email,
+          password: password,
+          contact: contact,
+          role: role,
+        })
+        .then((res) => {
+          console.log("Result", res.data.result);
+          toast.success("Successfully registered");
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Registration failed");
+        });
     }
+    setName("");
+    setEmail("");
+    setPassword("");
+    setRePass("");
+    setContact("");
+    setRole("");
   };
 
   return (
@@ -63,7 +89,7 @@ function Login() {
       <Grid container spacing={0}>
         <Grid item xs={12} sm={12} md={6} lg={6}>
           {" "}
-          <img src={authImage} alt="Auth Image" className="auth-image"></img>
+          <img src={authImage} alt="Auth" className="auth-image"></img>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} className="background-color">
           {" "}
