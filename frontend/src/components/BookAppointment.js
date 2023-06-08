@@ -9,10 +9,10 @@ export default function BookAppointment() {
   }, []);
   const getusers = () => {
     axios
-      .get("/users/getInfo")
+      .get("/users/getDoctors")
       .then((res) => {
         console.log(res.data);
-        setUserlist(res.data);
+        setUserlist(res.data.info);
       })
       .catch((err) => {
         console.log(err);

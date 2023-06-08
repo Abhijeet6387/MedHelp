@@ -58,65 +58,17 @@ export default function Navbar() {
                 <i className="fa fa-fw fa-newspaper-o"></i>Latest News
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/searchnearby">
-                <i className="fa fa-fw fa-search"></i>Search Nearby
-              </Link>
-            </li> */}
-            {/* <li className="nav-item">
-              <div className="dropdown">
-                <button
-                  className="btn dropdown-toggle"
-                  type="button"
-                  id="dropdownMenu2"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="fa fa-fw fa-tint"></i>Donations
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button
-                    className="dropdown-item"
-                    type="button"
-                    onClick={() => (window.location.href = "/blooddonation")}
-                  >
-                    Blood Donation
-                  </button>
-                  <button
-                    className="dropdown-item"
-                    type="button"
-                    onClick={() => (window.location.href = "/organdonation")}
-                  >
-                    Organ Donation
-                  </button>
-                </div>
-              </div>
-            </li> */}
-            {/* <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/charity">
-                <i className="fa fa-fw fa-cart-plus"></i>Charity Funding
-              </Link>
-            </li> */}
+
             <li className="nav-item">
               <Link className="nav-link hoverlink" to="/faq">
                 <i className="fa fa-fw fa-question-circle"></i>FAQ's
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link hoverlink"
-                to="https://symptomate.com/interview/0"
-                target="_blank"
-              >
+              <Link className="nav-link hoverlink" to="/home" target="_blank">
                 <i className="fa fa-fw fa-question-circle"></i>Test
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/discuss">
-                <i className="fa fa-fw fa-comments"></i>Discuss
-              </Link>
-            </li> */}
             <li className="nav-item">
               <button
                 className=" nav-link hoverlink logout"
