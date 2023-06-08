@@ -1,7 +1,6 @@
 const express = require("express");
 const AppointmentModel = require("../models/AppointmentModel");
 const router = express.Router();
-
 router.post("/appointmentData", async (req, res) => {
   const { Name, time, date, PName, Drname } = req.body;
   try {
@@ -17,7 +16,6 @@ router.post("/appointmentData", async (req, res) => {
     res.json({ statusCode: 400, data: error });
   }
 });
-
 router.get("/getappointments", async (req, res) => {
   try {
     const appointments = await AppointmentModel.find();
