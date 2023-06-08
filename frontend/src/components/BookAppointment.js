@@ -43,6 +43,8 @@ export default function BookAppointment() {
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Role</th>
+                      <th scope="col">Contact</th>
+                      <th scope="col">Expertise</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -53,6 +55,8 @@ export default function BookAppointment() {
                         <td>{singleuser.Username}</td>
                         <td>{singleuser.Email}</td>
                         <td>{singleuser.Role}</td>
+                        <td>{singleuser.Contact}</td>
+                        <td>{singleuser.Expertise}</td>
                         <td>
                           <button
                             type="button"
