@@ -63,6 +63,7 @@ export default function Login() {
         <form className="p-3 mt-3" onSubmit={onSubmitForm} autoComplete="off">
           <TextField
             fullWidth
+            size="small"
             type="email"
             name="email"
             id="email"
@@ -78,10 +79,11 @@ export default function Login() {
             }}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            sx={{ marginBottom: 1 }}
+            sx={{ marginBottom: 2 }}
           />
           <TextField
             fullWidth
+            size="small"
             type="password"
             name="password"
             id="pwd"
@@ -97,7 +99,7 @@ export default function Login() {
             }}
             onChange={(e) => setPass(e.target.value)}
             value={pass}
-            sx={{ marginBottom: 1 }}
+            sx={{ marginBottom: 2 }}
           />
 
           <Button

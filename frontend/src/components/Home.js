@@ -1,95 +1,106 @@
 import React from "react";
+import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
 import appoint from "../images/appointImage.png";
-import blood from "../images/blood.jpg";
+import news from "../images/news.jpg";
 import monitor from "../images/monitor.png";
+
 export default function Home() {
   return (
     <div className="home">
-      <div
-        className="card container"
-        style={{ opacity: "93%", overflow: "auto", height: "90vh" }}
-      >
-        <div className="card-body">
-          <h4 className="text-dark mb-3">Introduction</h4>
-          <p>
-            In India, healthcare systems are grappling with the consequences of
-            existing communicable and noncommunicable means of meeting people's
-            needs. The failure of public health to make adequate progress on
-            these underlying social determinants of health has been recognised
-            as a glaring failure. The lack of availability of resources in one
-            place and in an organised manner has led to several patients left
-            untreated for their symptoms. Our main aim is to bring together a
-            platform that bridges this gap between the healthcare system and the
-            people.
-          </p>
-          <h4 className="text-dark">Key Features</h4>
-          <div className="card-group">
-            <div className="card">
-              <img
-                className="card-img-top"
-                src={appoint}
-                alt="feature1"
-                style={{
-                  height: "21rem",
-                  padding: 2,
-                  border: "1px solid lightgray",
-                }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">Online Appointments</h5>
-                <hr />
-                <p className="card-text">
-                  Booking appointments through a list of doctors, consultations
-                  or setting up a call with the Doctors according to the needs
-                  of the patients.
-                </p>
-              </div>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Card sx={{ opacity: "93%", maxWidth: 900, margin: "0 auto" }}>
+            <CardContent>
+              <Typography variant="h4" sx={{ mb: 3 }}>
+                Introduction
+              </Typography>
+              <Typography>
+                In India, healthcare systems are grappling with the consequences
+                of existing communicable and noncommunicable means of meeting
+                people's needs. The failure of public health to make adequate
+                progress on these underlying social determinants of health has
+                been recognised as a glaring failure. The lack of availability
+                of resources in one place and in an organised manner has led to
+                several patients left untreated for their symptoms. Our main aim
+                is to bring together a platform that bridges this gap between
+                the healthcare system and the people.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card sx={{ opacity: "93%", maxWidth: 900, margin: "0 auto" }}>
+            <CardContent>
+              <Typography variant="h4">Key Features</Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={4}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={appoint}
+                      alt="feature1"
+                    />
+                    <CardContent>
+                      <Typography variant="h5">Online Appointments</Typography>
+                      <hr />
+                      <Typography variant="body2">
+                        Enjoy the flexibility of choosing appointment slots
+                        based on your availability, with the option to review
+                        doctors' profiles, specialties and schedule
+                        appointments.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={monitor}
+                      alt="feature3"
+                    />
+                    <CardContent>
+                      <Typography variant="h5">History Monitoring</Typography>
+                      <hr />
+                      <Typography variant="body2">
+                        Efficiently track and manage patients' medical history,
+                        including diagnoses, treatments, and medications, for
+                        comprehensive healthcare management.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={news}
+                      alt="feature2"
+                    />
+                    <CardContent>
+                      <Typography variant="h5">Latest News</Typography>
+                      <hr />
+                      <Typography variant="body2">
+                        Get insights into health-related topics, disease
+                        outbreaks, and medical innovations that can empower you
+                        to make informed decisions about your well-being.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </CardContent>
+            <div className="card-footer text-center">
+              <Typography variant="body2">
+                &copy;2022 Copyright Reserved
+              </Typography>
             </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src={monitor}
-                alt="feature3"
-                style={{
-                  height: "21rem",
-                  border: "1px solid lightgray",
-                }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">History Monitoring</h5>
-                <hr />
-                <p className="card-text">
-                  A dashboard section to keep a track of all the appointments of
-                  a particular patients.
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <img
-                className="card-img-top"
-                src={blood}
-                alt="feature2"
-                style={{
-                  height: "21rem",
-                  padding: 2,
-                  border: "1px solid lightgray",
-                }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">Blood Units Requests</h5>
-                <hr />
-                <p className="card-text">
-                  A section to put in requests for blood samples and enquire
-                  about them from nearby blood banks.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="card-footer text-center">
-          <b>@2022 Copyright, We The Jugglers</b>
-        </div>
-      </div>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 }

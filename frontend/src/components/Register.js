@@ -105,6 +105,7 @@ export default function Register() {
         <form className="p-3 mt-3" onSubmit={onSubmitForm} autoComplete="off">
           <TextField
             fullWidth
+            size="small"
             label="Username"
             value={username}
             onChange={onChangeName}
@@ -119,6 +120,7 @@ export default function Register() {
           />
           <TextField
             fullWidth
+            size="small"
             label="Email"
             type="email"
             value={email}
@@ -134,6 +136,7 @@ export default function Register() {
           />
           <TextField
             fullWidth
+            size="small"
             label="Password"
             type="password"
             value={pass}
@@ -149,6 +152,7 @@ export default function Register() {
           />
           <TextField
             fullWidth
+            size="small"
             label="Contact"
             value={contact}
             onChange={onChangeContact}
@@ -167,7 +171,7 @@ export default function Register() {
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
             <Grid item xs={6}>
-              <FormControl fullWidth sx={{ marginBottom: 1 }}>
+              <FormControl fullWidth sx={{ marginBottom: 1 }} size="small">
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select
                   labelId="role-label"
@@ -181,7 +185,7 @@ export default function Register() {
               </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <FormControl fullWidth sx={{ marginBottom: 1 }}>
+              <FormControl fullWidth sx={{ marginBottom: 1 }} size="small">
                 <InputLabel id="expertise-label">Expertise</InputLabel>
                 <Select
                   labelId="expertise-label"
@@ -197,10 +201,7 @@ export default function Register() {
                   <MenuItem value={"Physician"}>Physician</MenuItem>
                   <MenuItem value={"N/A"}>N/A</MenuItem>
                 </Select>
-                <FormHelperText>
-                  {" "}
-                  Please select N/A if you are a patient
-                </FormHelperText>
+                <FormHelperText> Select N/A for patient</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
