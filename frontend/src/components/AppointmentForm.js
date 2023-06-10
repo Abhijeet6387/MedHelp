@@ -5,6 +5,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Button,
 } from "@mui/material";
 import React, { useState } from "react";
 import "../styles/Appointment.css";
@@ -31,6 +32,7 @@ export default function AppointmentForm(props) {
       .post("/appointmentinfos/appointmentData", appointData)
       .then((res) => {
         console.log(res.data);
+        alert("Appointment scheduled");
       })
       .catch((err) => console.log(err));
 
@@ -46,7 +48,7 @@ export default function AppointmentForm(props) {
       <Box component={"form"} onSubmit={submitHandler} className="box">
         <h3>Book Appointment</h3>
         <TextField
-          sx={{ marginBottom: 1 }}
+          sx={{ marginBottom: 2 }}
           fullWidth
           required
           id="outlined--required"
@@ -57,7 +59,7 @@ export default function AppointmentForm(props) {
           onChange={(e) => setPatientName(e.target.value)}
         />
         <TextField
-          sx={{ marginBottom: 1 }}
+          sx={{ marginBottom: 2 }}
           required
           fullWidth
           id="outlined--required"
@@ -70,7 +72,7 @@ export default function AppointmentForm(props) {
         <TextField
           required
           fullWidth
-          sx={{ marginBottom: 1 }}
+          sx={{ marginBottom: 2 }}
           id="outlined--required"
           className="text-required"
           label="Issue"
@@ -81,7 +83,7 @@ export default function AppointmentForm(props) {
         <TextField
           required
           fullWidth
-          sx={{ marginBottom: 1 }}
+          sx={{ marginBottom: 2 }}
           id="outlined-required"
           className="text-required"
           type="date"
@@ -96,6 +98,7 @@ export default function AppointmentForm(props) {
             value={time}
             label="Slot"
             onChange={(e) => setTime(e.target.value)}
+            sx={{ marginBottom: 2 }}
           >
             <MenuItem value={"9:00 Am to 12:00 Pm"}>
               9:00 Am to 12:00 Pm
@@ -105,16 +108,16 @@ export default function AppointmentForm(props) {
           </Select>
         </FormControl>
 
-        <button
+        <Button
           type="submit"
-          className="btn btn-primary"
+          variant="contained"
           style={{
             marginTop: 2,
             marginBottom: 2,
           }}
         >
           Add
-        </button>
+        </Button>
       </Box>
     </div>
   );

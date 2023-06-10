@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AppointmentForm from "./AppointmentForm";
 
-export default function Appoint() {
+export default function AllAppoint() {
   const [list, setList] = useState([]);
   const getAppointmentData = () => {
     axios
@@ -22,15 +21,15 @@ export default function Appoint() {
 
   return (
     <div className="container">
-      <div className="cardo">
+      {/* <div className="cardo">
         <div className="appointment">
           <AppointmentForm />
         </div>
         <div className="appointimg">
           <div className="imgholder"></div>
         </div>
-      </div>
-      {/* <div className="card container">
+      </div> */}
+      <div className="card container">
         <div className="card-body table-responsive">
           {list.length === 0 ? (
             <p>Sorry, please try again later !</p>
@@ -70,7 +69,7 @@ export default function Appoint() {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
