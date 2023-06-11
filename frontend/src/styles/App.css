@@ -235,12 +235,10 @@ a {
 }
 
 .imgholder {
-  min-height: 80%;
   height: auto;
-  width: 90%;
+  width: 100%;
   background-image: url("../images/appointImg.jpg");
   background-size: cover;
-  /* border: 1px solid red ; */
   position: sticky;
 }
 

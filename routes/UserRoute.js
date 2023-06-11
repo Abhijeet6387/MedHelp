@@ -60,6 +60,8 @@ router.post("/login", (req, res) => {
             return res.status(200).json({
               message: "Authentication Successful",
               token: token,
+              Username: user[0].Username,
+              Role: user[0].Role,
             });
           } else {
             return res.status(401).json({
@@ -79,12 +81,20 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/getDoctors", (req, res) => {
-  Users.find({ Role: "Doctor" })
-    .then((user) => {
-      console.log(user);
+  const { expertise } = req.query;
+  console.log("LINE", expertise);
+  const query = { Role: "Doctor" };
+
+  if (expertise) {
+    query.Expertise = expertise;
+  }
+
+  Users.find(query)
+    .then((users) => {
+      console.log(users);
       return res.status(200).json({
         message: "Successful",
-        info: user,
+        info: users,
       });
     })
     .catch((err) => {

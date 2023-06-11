@@ -31,6 +31,8 @@ export default function Login() {
       });
       alert(res.data.message);
       localStorage.setItem("my_token", res.data.token);
+      localStorage.setItem("Username", res.data.Username);
+      localStorage.setItem("Role", res.data.Role);
       window.location.href = "/home";
     } catch (error) {
       alert(error.message);

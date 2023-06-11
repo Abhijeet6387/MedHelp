@@ -19,8 +19,20 @@ router.post("/appointmentData", async (req, res) => {
 });
 
 router.get("/getappointments", async (req, res) => {
+  console.log(req.query);
+  const userName = req.query.userName;
+  const userRole = req.query.userRole;
   try {
-    const appointments = await AppointmentModel.find();
+    let appointments;
+
+    if (userRole === "Patient") {
+      appointments = await AppointmentModel.find({ PName: userName });
+    } else if (userRole === "Doctor") {
+      appointments = await AppointmentModel.find({ Drname: userName });
+    } else {
+      return res.status(400).json({ message: "Invalid user role" });
+    }
+
     res.json({ appointments });
   } catch (error) {
     console.error(error);

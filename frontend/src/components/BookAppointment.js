@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Select, MenuItem } from "@mui/material";
+
 export default function BookAppointment() {
-  const navigate = useNavigate();
   const [userlist, setUserlist] = useState([]);
+  const [filter, setFilter] = useState("");
+
   useEffect(() => {
     getusers();
-  }, []);
+  }, [filter]);
+
   const getusers = () => {
+    const params = filter ? { expertise: filter } : {};
+    console.log(params);
     axios
-      .get("/users/getDoctors")
+      .get("/users/getDoctors", { params })
       .then((res) => {
         console.log(res.data);
         setUserlist(res.data.info);
@@ -26,6 +31,27 @@ export default function BookAppointment() {
     <>
       <div className="card container">
         <div className="card-body table-responsive">
+          <div className="filter-section">
+            <label>Filter by Expertise: </label>
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              style={{
+                marginLeft: 10,
+              }}
+            >
+              <option value="" disabled>
+                Select Expertise
+              </option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Oncology">Oncology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Physician">Physician</option>
+            </select>
+          </div>
+
           {userlist.length === 0 ? (
             <p>Sorry, Doctors are currently unavailable !</p>
           ) : (

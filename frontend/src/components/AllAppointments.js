@@ -3,9 +3,24 @@ import axios from "axios";
 
 export default function AllAppoint() {
   const [list, setList] = useState([]);
+  const Role = localStorage.getItem("Role");
+  const Username = localStorage.getItem("Username");
+
+  console.log(Role);
+  console.log(Username);
+
   const getAppointmentData = () => {
+    const userRole = Role;
+    const userName = Username;
+
     axios
-      .get("/appointmentinfos/getappointments")
+      .get("/appointmentinfos/getappointments", {
+        params: {
+          userName: userName,
+          userRole: userRole,
+        },
+      })
+
       .then((res) => {
         console.log(res.data.appointments);
         setList(res.data.appointments);
@@ -17,18 +32,10 @@ export default function AllAppoint() {
 
   useEffect(() => {
     getAppointmentData();
-  }, []);
+  }, [Role, Username]);
 
   return (
     <div className="container">
-      {/* <div className="cardo">
-        <div className="appointment">
-          <AppointmentForm />
-        </div>
-        <div className="appointimg">
-          <div className="imgholder"></div>
-        </div>
-      </div> */}
       <div className="card container">
         <div className="card-body table-responsive">
           {list.length === 0 ? (

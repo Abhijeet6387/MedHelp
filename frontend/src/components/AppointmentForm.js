@@ -48,7 +48,7 @@ export default function AppointmentForm(props) {
       <Box component={"form"} onSubmit={submitHandler} className="box">
         <h3>Book Appointment</h3>
         <TextField
-          sx={{ marginBottom: 2 }}
+          sx={{ marginBottom: 2, marginTop: 2 }}
           fullWidth
           required
           id="outlined--required"
@@ -116,7 +116,7 @@ export default function AppointmentForm(props) {
             marginBottom: 2,
           }}
         >
-          Add
+          Confirm
         </Button>
       </Box>
     </div>
