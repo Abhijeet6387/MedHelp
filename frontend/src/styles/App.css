@@ -53,7 +53,19 @@ a {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
+.wrapper-3 {
+  width: 100px;
+  height: 500px;
+  margin: auto auto;
+  padding: 40px 30px 30px 30px;
+  background-color: white;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .logo {
   width: 80px;
   margin: auto;

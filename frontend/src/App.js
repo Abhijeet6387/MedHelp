@@ -8,9 +8,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Appoint from "./components/Appoint";
 import News from "./components/News/News";
-import SymptomChecker from "./components/SymptomChecker";
 import AllAppointments from "./components/AllAppointments";
-
+import SymptomChecker from "./components/SymptomChecker";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -28,10 +27,10 @@ function App() {
             <Route path="/appointment" element={<Appoint />}></Route>
             <Route path="/bookappoint" element={<BookAppoint />}></Route>
             <Route path="/latestnews" element={<News />}></Route>
-            <Route path="/symptomcheck" element={<SymptomChecker />}></Route>
             <Route path="/faq" element={<Faq />}></Route>
+            <Route path="/symptomcheck" element={<SymptomChecker />}></Route>
             <Route
-              path="/viewappointments"
+              path="/viewappointment"
               element={<AllAppointments />}
             ></Route>
           </Route>

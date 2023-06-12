@@ -64,13 +64,13 @@ export default function Navbar() {
                 <i className="fa fa-fw fa-question-circle"></i>FAQ's
               </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link hoverlink" to="/symptomcheck">
                 <i className="fa fa-fw fa-question-circle"></i>Test Symptoms
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/viewappointments">
+              <Link className="nav-link hoverlink" to="/viewappointment">
                 <i className="fa fa-fw fa-eye"></i>View Appointments
               </Link>
             </li>
