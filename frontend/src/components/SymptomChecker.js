@@ -27,16 +27,9 @@ export default function SymptomChecker() {
             sx={{ color: "gray" }}
           />
         </FormGroup>
-        {/* <Button
-          variant="contained"
-          sx={{ marginTop: 3, marginBottom: 3, textTransform: "unset" }}
-          fullWidth
-          onClick={handleClick}
-        >
-          Take the test
-        </Button> */}
+
         <a
-          href="https://symptom-checker-alpha.vercel.app/takeTheTest.html"
+          href="https://medhelp-symptom-checker.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
