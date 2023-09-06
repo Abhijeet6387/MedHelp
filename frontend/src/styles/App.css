@@ -179,7 +179,7 @@ a {
 }
 .card {
   margin-top: 5px;
-  opacity: 0.85;
+  /* opacity: 0.85; */
   height: auto;
   width: auto;
 }
