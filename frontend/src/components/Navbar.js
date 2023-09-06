@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import mhlogo from "../images/mhlogo.png";
 export default function Navbar() {
+  const Role = localStorage.getItem("Role");
+  const Username = localStorage.getItem("Username");
   const handlelogout = () => {
     if (window.confirm("Are you sure?") === true) {
       localStorage.removeItem("my_token");
@@ -43,14 +45,35 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
+            {Role === "Patient" ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link hoverlink" to="/home">
+                    <i className="fa fa-fw fa-home"></i>Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link hoverlink" to="/symptomcheck">
+                    <i className="fa fa-fw fa-question-circle"></i>Test Symptoms
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link hoverlink" to="/bookappoint">
+                    <i className="fa fa-fw fa-heartbeat"></i>Book Appointment
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link hoverlink" to="/home">
+                  <i className="fa fa-fw fa-home"></i>Home
+                </Link>
+              </li>
+            )}
+
             <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/home">
-                <i className="fa fa-fw fa-home"></i>Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/bookappoint">
-                <i className="fa fa-fw fa-heartbeat"></i>Book Appointment
+              <Link className="nav-link hoverlink" to="/viewappointment">
+                <i className="fa fa-fw fa-eye"></i>View Appointments
               </Link>
             </li>
             <li className="nav-item">
@@ -58,20 +81,9 @@ export default function Navbar() {
                 <i className="fa fa-fw fa-newspaper-o"></i>Latest News
               </Link>
             </li>
-
             <li className="nav-item">
               <Link className="nav-link hoverlink" to="/faq">
                 <i className="fa fa-fw fa-question-circle"></i>FAQ's
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/symptomcheck">
-                <i className="fa fa-fw fa-question-circle"></i>Test Symptoms
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link hoverlink" to="/viewappointment">
-                <i className="fa fa-fw fa-eye"></i>View Appointments
               </Link>
             </li>
             <li className="nav-item">
